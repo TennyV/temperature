@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+
+
+ 
+
+
+int main() {
+    string cityName;
+    int fahrenheit;
+    int celcius;
+    ifstream inFS; // input file stream
+    ofstream outFS; // Output file stream
+
+   // Open file
+    ifstream inFile;
+    inFS.open("FahrenheitTemperature.txt");
+    outFS.open("CelsiusTemperature.txt");
+    
+
+   if (!inFS.is_open()) {
+      cout << "Could not open file FahrenheitTemperature.txt." << endl;
+      return 1;
+   }
+   else {
+       while(inFS >> cityName >> fahrenheit) {
+           celcius = (int)(((fahrenheit - 32) * 5)/(int)9);
+           outFS << cityName << " " << celcius << endl;
+       }
+   }
+    
+   // Close files
+    inFile.close();
+    outFS.close();
+
+   return 0;
+}
